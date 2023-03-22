@@ -2,11 +2,13 @@ package edu.naimoff.springrest.RestAPI.services;
 
 import edu.naimoff.springrest.RestAPI.models.Person;
 import edu.naimoff.springrest.RestAPI.repositories.PeopleRepository;
+import edu.naimoff.springrest.RestAPI.util.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PeopleService {
@@ -16,7 +18,8 @@ public class PeopleService {
         this.peopleRepository=peopleRepository;
     }
     public Person getOnePerson(long id){
-        return peopleRepository.getOne(id);
+         Optional<Person> person=peopleRepository.findOne(id);
+         return person.orElseThrow(PersonNotFoundException::new);
     }
     public List<Person> getAll(){
         return peopleRepository.findAll();
