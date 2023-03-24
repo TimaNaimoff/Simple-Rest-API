@@ -10,5 +10,4 @@ import lombok.Setter;
 public class PersonErrorResponse{
     private String name;
     private long timestamp;
-
 }
