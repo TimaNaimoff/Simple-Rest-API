@@ -8,12 +8,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name="person")
-//@Getter
-//@Setter
+@Getter
+@Setter
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +31,13 @@ public class Person {
     @Email
     @NotEmpty(message="Should not be empty")
     private String email;
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
+    @Column(name="createdWho")
+    @javax.validation.constraints.NotEmpty
+    private String createdWho;
     public Person(){
 
     }
@@ -43,45 +51,6 @@ public class Person {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Person person = (Person) o;
-        return id != null && Objects.equals(id, person.id);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Override
     public int hashCode() {

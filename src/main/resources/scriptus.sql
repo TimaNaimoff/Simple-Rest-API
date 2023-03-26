@@ -15,3 +15,6 @@ INSERT INTO person(person_name,person_age,person_email)VALUES(
 INSERT INTO person(person_name,person_age,person_email)VALUES(
     'Akbur',6,'uddevan@gmail.com'
 );
+ALTER TABLE person ADD COLUMN created_at timestamp,
+    ADD COLUMN updated_at timestamp,
+    ADD COLUMN created_who varchar;
